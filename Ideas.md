@@ -11,4 +11,14 @@ AI productivity App with Leveling system
 -Take monthly test to check your current status and make a feedback on your current self
 -Habit tracker
 
+Improvement Tasks
+-List all the improvemnts daily
+-List all the projects
+-List all the tasks that have been accomplished
+-List all the things that the user have learned daily
+
+Parking lot Ideas
+=Make an app with parking lot UI
+-The cars are all the ideas of the user
+=There are cars that is currently running and it is the users Ideas or projects
 
