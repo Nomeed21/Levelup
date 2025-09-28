@@ -1,0 +1,8 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = true
+[remote "origin"]
+	url = git@github.com:Nomeed21/Levelup.git
+	fetch = +refs/*:refs/*
+	mirror = true
