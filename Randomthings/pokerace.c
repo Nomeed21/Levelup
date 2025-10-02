@@ -6,8 +6,8 @@
 int randomnum() {
     srand(time(NULL));
 
-    int numbers[] = {5, 9, 12, 13, 15};
-    int weights[] = {1, 2, 3, 1, 1}; // '12' is 3x as likely.
+    int numbers[] = {1, 5, 9, 12, 13, 15, 20};
+    int weights[] = {1, 1, 2, 3, 2, 1, 1}; // '12' is 3x as likely.
     int size = sizeof(numbers) / sizeof(numbers[0]);
 
     // Calculate the total weight
@@ -66,32 +66,40 @@ int pokerace(char player[10]){
     }
 }
 int skills(int poke, int skill){
+    int damage = randomnum();
     switch (poke){
         case 0:
             switch (skill) {
                 case 1:
+                damage += 2;
                     printf("Used Black Punch!!\n");
-                    printf("Dealt %d damage\n", randomnum());
-                    return randomnum() +2;
+                    if (damage > 15) printf("You now have a black eye\n\n"); else if ( damage == 1) printf("You gay\n\n");
+                    printf("Dealt %d damage\n", damage);
+                    return damage;
                     break;
                 case 2: 
+                damage += 1;
                     printf("Used Dreadlocks!\n");
-                    printf("Dealt %d damage\n", randomnum());
-                    return randomnum() +1;
+                    if (damage > 10) printf("You've been stunned\n\n"); else if ( damage == 1) printf("You need to wash your hair bro\n\n");
+                    printf("Dealt %d damage\n", damage);
+                    return damage ;
                     break;
                     
                 case 3:
                     printf("Used WeedSmoke!!\n");
-                    printf("Dealt %d damage\n", randomnum());
-                    return randomnum()*-1;
+                     if (damage > 10) printf("Snoop joins\n\n"); else if ( damage == 1) printf("Your bong broke\n\n");
+                    printf("Restored %d health\n", damage);
+                    return damage*-1;
                     break;
                 case 4:
                     printf("Used Steal!\n");
-                    printf("Dealt %d damage\n", randomnum());
-                    return randomnum()*0;
+                     if (damage > 10) printf("Stole 1000$\n\n"); else if ( damage == 1) printf("Your oponent is broke\n\n");
+                    printf("Dealt %d damage\n", damage);
+                    return damage;
                     break;
                 default:
-                printf("Not a skill!\n");
+                printf("Not a skill! Bro can't read numbers\nNext player's turn\n");
+                return 0;
                 break;
             }
             break;
@@ -99,26 +107,31 @@ int skills(int poke, int skill){
         switch (skill) {
                 case 1:
                     printf("Used Privilege!\n");
-                    printf("Dealt %d damage\n", randomnum());
-                    return randomnum();
+                     if (damage > 10) printf("Supreme White privelege\n\n"); else if ( damage == 1) printf("Your oponent doesn't care\n\n");
+                    printf("Dealt %d damage\n", damage);
+                    return damage;
                     break;
                 case 2: 
                     printf("Used Karen!\n");
-                    printf("Dealt %d damage\n", randomnum());
-                    return randomnum();
+                     if (damage > 10) printf("The manager comes in\n\n"); else if ( damage == 1) printf("No manager for you\n\n");
+                    printf("Dealt %d damage\n", damage);
+                    return damage;
                     break;
                 case 3:
                     printf("Used Detain!\n");
-                    printf("Dealt %d damage\n", randomnum());
-                    return randomnum();
+                     if (damage > 10) printf("Justice!!\n\n"); else if ( damage == 1) printf("The police laughed at you\n\n");
+                    printf("Dealt %d damage\n", damage);
+                    return damage;
                     break;
                 case 4:
                     printf("Used Capitalism!\n");
-                    printf("Restored %d health\n", randomnum());
-                    return randomnum()*-1;
+                     if (damage > 10) printf("MONEY MONEY MONEH!\n\n"); else if ( damage == 1) printf("broke\n\n");
+                    printf("Restored %d health\n", damage);
+                    return damage*-1;
                     break;
                 default:
-                printf("Not a skill!");
+                printf("Not a skill! Bro can't read numbers\nNext player's turn\n");
+                return 0;
                 break;
             }
             break;
@@ -126,26 +139,31 @@ int skills(int poke, int skill){
         switch (skill) {
                 case 1:
                     printf("Used Numbers!\n");
-                    printf("Dealt %d damage\n", randomnum());
-                    return randomnum();
+                     if (damage > 10) printf("CALCULUS!!!\n\n"); 
+                    printf("Dealt %d damage\n", damage);
+                    return damage;
                     break;
                 case 2: 
                     printf("Used Monosodiumglutamate!!\n");
-                    printf("Dealt %d damage\n", randomnum());
-                    return randomnum()*-1;
+                     if (damage > 10) printf("Haiyaaah\n\n"); else if ( damage == 1) printf("Your cholesterol has risen\n\n");
+                    printf("Dealt %d damage\n", damage);
+                    return damage;
                     break;
                 case 3:
                     printf("Used Squint!\n");
-                    printf("Dealt %d damage\n", randomnum());
-                    return randomnum();
+                     if (damage > 10) printf("chingchong\n\n"); else if ( damage == 1) printf("bro is blind\n\n");
+                    printf("Dealt %d damage\n", damage);
+                    return damage;
                     break;
                 case 4:
                     printf("Used KungFu!\n");
-                    printf("Dealt %d damage\n", randomnum());
-                    return randomnum()+6;
+                     if (damage > 10) printf("Dragon warrior\n\n"); else if ( damage == 1) printf("are you drunk?\n\n");
+                    printf("Dealt %d damage\n", damage);
+                    return damage;
                     break;
                 default:
-                printf("Not a skill!\n");
+                printf("Not a skill Bro can't read numbers\nNext player's turn\n!\n");
+                return 0;
                 break;
             }
         break;
@@ -245,7 +263,9 @@ int main() {
         skillList(pr1);
         scanf("%d", &skill);
         sdamage = skills(pr1, skill);
-        p2health -= sdamage;
+        if (sdamage < 0) {
+        p1health -= sdamage;
+        } else { p2health -= sdamage;} 
         printf("\n\n");
         turn = !turn;
         if (p2health < 0) break;
@@ -253,7 +273,9 @@ int main() {
         skillList(pr2);
         scanf("%d", &skill);
         sdamage = skills(pr2, skill);
-        p1health -= sdamage;
+        if (sdamage < 0) {
+        p2health -= sdamage;
+        } else { p1health -= sdamage;} 
         turn = !turn;
         printf("\n\n");
     }
